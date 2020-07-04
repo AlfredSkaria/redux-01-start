@@ -2,6 +2,8 @@ import * as actionTypes from './actionTypes';
 
 
 export const saveResult = (res) => {
+
+    //const updatedResult  = res * 2;
     return {
         type: actionTypes.STORE_RESULT,
         result: res
@@ -11,9 +13,11 @@ export const saveResult = (res) => {
 export const storeResult = (res) => {
 
     //thunk middleware
-    return dispatch => {
+    return (dispatch, getState) => {
         //Sample asynchronous function
         setTimeout( () =>  {
+            const oldCounter = getState().ctr.counter;
+            console.log('oldCounter', oldCounter);
             dispatch(saveResult(res));
         }, 2000);
     }

@@ -1,5 +1,5 @@
 import * as actionTypes from '../actions/actionTypes';
-
+import {updateObject} from '../utility';
 const initialState = {
     results: []
 }
@@ -10,10 +10,8 @@ const reducer = (state = initialState, action) => {
         case actionTypes.STORE_RESULT:
 
             console.log('In reducer [store result]');
-            return {
-                ...state,
-                results: state.results.concat({id: new Date(), value: action.result})
-            }
+            return updateObject(state,{results: state.results.concat({id: new Date(), value: action.result * 2})});
+            
         case actionTypes.DELETE_RESULT:
             //ANother way to remove item from array 
             // const id = 2;
@@ -21,10 +19,7 @@ const reducer = (state = initialState, action) => {
             // newArray.splice(id, 1)
             
             const updatedArray = state.results.filter(result => result.id !== action.resultElId);
-            return{
-                ...state,
-                results: updatedArray
-            }
+            return updateObject(state, {results: updatedArray});
     }
     return state;
 };
