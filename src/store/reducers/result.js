@@ -8,6 +8,8 @@ const reducer = (state = initialState, action) => {
 
     switch(action.type){
         case actionTypes.STORE_RESULT:
+
+            console.log('In reducer [store result]');
             return {
                 ...state,
                 results: state.results.concat({id: new Date(), value: action.result})
@@ -17,7 +19,7 @@ const reducer = (state = initialState, action) => {
             // const id = 2;
             // const newArray = [...state.results];
             // newArray.splice(id, 1)
-
+            
             const updatedArray = state.results.filter(result => result.id !== action.resultElId);
             return{
                 ...state,

@@ -37,12 +37,22 @@ export const subtract = (value) => {
     };
 };
 
-export const storeResult = (res) => {
-
-    return{
+export const saveResult = (res) => {
+    return {
         type: STORE_RESULT,
         result: res
     };
+};
+
+export const storeResult = (res) => {
+
+    //thunk middleware
+    return dispatch => {
+        //Sample asynchronous function
+        setTimeout( () =>  {
+            dispatch(saveResult(res));
+        }, 2000);
+    }
 };
 
 export const deleteResult = (resElId) => {
